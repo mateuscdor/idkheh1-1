@@ -1,5 +1,5 @@
 const translate = require('@vitalets/google-translate-api');
-async function execute(bosco, msg) {
+async function execute(bosco, msg, match) {
     if (!match)
         return reply(`_Example : ${handlers}trt {ml} text_`);
     let
