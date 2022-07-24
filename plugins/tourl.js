@@ -2,6 +2,7 @@ const fs = require("fs");
 const util = require("util");
 const { UploadFileUgu, TelegraPh } = require('../lib/uploader')
 async function execute(bosco, msg) {
+    var quoted = msg.quoted ? msg.quoted : msg
     let media = await bosco.downloadAndSaveMediaMessage(quoted);
     if (isQuotedImage) {
         let anu = await TelegraPh(media);
