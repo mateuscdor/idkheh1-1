@@ -1,7 +1,7 @@
 const FilterDb = require('./sql/filters');
 let FILTERED = "*✅ Successfully set* ```{}``` *to filter!*"
 async function execute(bosco, msg, match) {
-match = match[1].match(/[\'\"\“](.*?)[\'\"\“]/gsm);
+match = match.match(/[\'\"\“](.*?)[\'\"\“]/gsm);
     if (match === null) {
         filtreler = await FilterDb.getFilter(msg.key.remoteJid);
         if (filtreler === false) {
