@@ -200,7 +200,18 @@ console.log('successfully connected ✅')
             global.isQuotedReply = type === 'extendedTextMessage' && content.includes('Message')
             global.isQuotedText = type === 'extendedTextMessage' && content.includes('conversation')
             global.isQuotedextendedText = type === 'extendedTextMessage' && content.includes('extendedTextMessage')
-
+//Filter
+const FilterDb = require('./plugins/sql/filters');
+var filtreler = await FilterDb.getFilter(msg.key.remoteJid);
+    if (!filtreler) return; 
+    filtreler.map(
+        async (filter) => {
+            pattern = new RegExp(filter.dataValues.regex ? filter.dataValues.pattern : ('\\b(' + filter.dataValues.pattern + ')\\b'), 'gm');
+            if (pattern.test(msg.message)) {
+                await bosco.sendMessage(msg.key.remoteJid,{ text : filter.dataValues.text }, {quoted: msg });
+            }
+        }
+    );
 //public/self
 if (!bosco.public) {
 if (!msg.key.fromMe) return
