@@ -1,0 +1,64 @@
+{
+    "name": "Lisa-md",
+    "description": "Whatsapp bot made by pepesir using baileys",
+    "repository": "https://github.com/pepesir/Lisa-md",
+    "logo": "https://telegra.ph/file/8fd47f9ccb7c39008b998.jpg",
+    "keywords": ["whatsbot", "whatsapp-bot", "whatsapp","bot","lisa","lisa-md","pepesir","md"],
+    "stack": "container",
+    "env": {
+      "BOT_NAME": {
+        "description": "Bot name.",
+        "required": false,
+        "value": "ʟɪꜱᴀ-ᴍᴅ"
+      },
+      "BOT_THUMB": {
+        "description": "Bot thumb link.",
+        "required": false,
+        "value": "https://telegra.ph/file/8fd47f9ccb7c39008b998.jpg"
+      },
+      "BOT_FOOTER": {
+        "description": "Footer text.",
+        "required": false,
+        "value": "ᴩᴇᴩᴇꜱɪʀ"
+      },
+      "ALIVE_VIDEO": {
+        "description": "Alive video link.",
+        "required": false,
+        "value": "https://telegra.ph/file/a209db546105ed9447d2a.mp4"
+      },
+      "ALIVE_TEXT": {
+        "description": "Alive text.",
+        "required": false,
+        "value": "Hᴇʏ Iᴀᴍ Aʟɪᴠᴇ"
+      },
+      "OWNER_LINK": {
+        "description": "Provide any link.",
+        "required": false,
+        "value": "https://instagram.com/pepe.sir_?"
+      },
+      "HEROKU_APP_NAME": {
+        "description": "Heroku app name, same as above entered",
+        "required": true
+      },
+      "HEROKU_API_KEY": {
+        "description": "Heroku account api key, https://dashboard.heroku.com/account",
+        "required": true
+      },
+      "PREFIX": {
+        "description": "Bot handler/prefix.",
+        "required": false,
+        "value": "."
+      },
+      "SESSION_ID": {
+        "description": "session id",
+        "required": true
+      }
+    },
+      "addons": [{
+        "plan": "heroku-postgresql"
+      }],
+      "buildpacks": [{
+        "url": "heroku-community/apt"
+        }]
+    }
+  
