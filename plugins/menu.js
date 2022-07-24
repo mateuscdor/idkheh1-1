@@ -71,7 +71,7 @@ let button = [
         { quickReplyButton: { displayText: `Help`, id: `${handlers}help` } },
         { quickReplyButton: { displayText: `Status`, id: `${handlers}status` } }
             ];
-await bosco.send5ButImg(from, menu, bot_footer, bot_img, button) 
+await bosco.send5ButImg(msg.key.remoteJid, menu, bot_footer, bot_img, button) 
 };
 
 module.exports = { 
