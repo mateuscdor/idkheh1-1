@@ -18,20 +18,6 @@ match = match[1].match(/[\'\"\“](.*?)[\'\"\“]/gsm);
         await FilterDb.setFilter(msg.key.remoteJid, match[0].replace(/['"“]+/g, ''), match[1].replace(/['"“]+/g, ''), match[0][0] === "'" ? true : false);
         await reply(FILTERED.format(match[0].replace(/['"]+/g, '')));
     }
-/*//Stop
-match = match[1].match(/[\'\"\“](.*?)[\'\"\“]/gsm);
-    if (match === null) {
-        return await message.client.sendMessage(message.jid,Lang.NEED_REPLY + '\n*Example:* ```.stop "hello"```',MessageType.text)
-    }
-
-    del = await FilterDb.deleteFilter(msg.key.remoteJid, match[0].replace(/['"“]+/g, ''));
-    
-    if (!del) {
-        await reply(Lang.ALREADY_NO_FILTER)
-    } else {
-        await reply(Lang.DELETED)
-    }*/
-
 
 }
 module.exports = { 
