@@ -210,7 +210,7 @@ console.log('connected')
                   var match = q;
                 }   
                 if (bosco.plugins.has(plugin)) {
-                    try { bosco.plugins.get(plugin).execute(bosco, match, msg);
+                    try { bosco.plugins.get(plugin).execute(bosco, msg, match);
                     } catch (error) {
                         console.log(error);
                     }
@@ -218,11 +218,11 @@ console.log('connected')
             } else if (body.startsWith('https://youtu.be/')) { //auto download yt
                 let args = body.trim().split(' ')
                 let match = args[0]
-                bosco.plugins.get(`yt`).execute(bosco, match, msg);
+                bosco.plugins.get(`yt`).execute(bosco, msg, match);
             } else if  (body.startsWith('https://www.instagram.com/')) { //auto download ig
                 let args = body.trim().split(' ')
                 let match = args[0]
-                bosco.plugins.get(`ig`).execute(bosco, match, msg);
+                bosco.plugins.get(`ig`).execute(bosco, msg, match);
             }            
         }catch (err){
             console.log(err)
