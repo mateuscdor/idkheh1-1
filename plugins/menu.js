@@ -8,15 +8,15 @@ let plugins = bosco.plugins;
 plugins.forEach((plugin) => {
             if (!plugin.isDependent) {
                 if (plugin.Type === 'group')
-                    group += `\n│🍁⃝❉⃟🍂 *${plugin.command}*\n│`;
+                    group += `\n│🍁⃝❉⃟🍂 *${handlers}${plugin.command}*\n│`;
                 if (plugin.Type === 'download')
-                    download += `\n│🍒─⃝»͓̽  *${plugin.command}*\n│`
+                    download += `\n│🍒─⃝»͓̽  *${handlers}${plugin.command}*\n│`
                 if (plugin.Type === 'convert')
-                    convert += `\n│🌸─⃝»͓̽  *${plugin.command}*\n│`
+                    convert += `\n│🌸─⃝»͓̽  *${handlers}${plugin.command}*\n│`
                 if (plugin.Type === 'owner')
-                    owner += `\n│🦋⃝❉⃟࿔ꦿ  *${plugin.command}*\n│`
+                    owner += `\n│🦋⃝❉⃟࿔ꦿ  *${handlers}${plugin.command}*\n│`
                 if (plugin.Type === 'misc')
-                    misc += `\n│❤️⃝➤⃟̱̱̱̱̄̄̄̄🐦 *${plugin.command}*\n│`
+                    misc += `\n│❤️⃝➤⃟̱̱̱̱̄̄̄̄🐦 *${handlers}${plugin.command}*\n│`
             }
 });
 let menu = `╭────────────────╮
