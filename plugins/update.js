@@ -8,6 +8,7 @@ const { PassThrough } = require('stream');
 const heroku = new Heroku({ token: heroku_api_key })
 const {getBuffer} = require("../lib/myfunc");
 async function execute(bosco, msg, match) {
+if (!msg.key.fromMe) return reply('_only for owner_')
     if (!match) {
         await git.fetch();
         var commits = await git.log(['main' + '..origin/' + 'main']);
