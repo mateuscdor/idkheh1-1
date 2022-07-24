@@ -4,7 +4,7 @@ const igRegex = /(?:https?:\/\/)?(?:www\.)?(?:instagram\.com(?:\/.+?)?\/(p|reel|
 const execute = async (pepe, msg, match) => {
   if (!match)
             return await reply(`_Example : ${handlers}ig link_`);
-        const vid = igRegex.exec(query);
+        const vid = igRegex.exec(match);
 if (vid) {
 
                 let url = query
