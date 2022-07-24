@@ -200,7 +200,7 @@ console.log('connected')
             //connect body with plugin
             if (body.startsWith(handlers)) {
                 let argsm = body.slice(1).trim().split(/ +/g);
-                let args = body.trim().split(/ +/).slice(1)
+                global.args = body.trim().split(/ +/).slice(1)
                 let plugin = argsm.shift().toLowerCase();
                 let q = args.join(" ")
                 //console.log({ plugin, args });
