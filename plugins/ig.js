@@ -7,7 +7,7 @@ const execute = async (pepe, msg, match) => {
         const vid = igRegex.exec(match);
 if (vid) {
 
-                let url = query
+                let url = match
 	            hx.igdl(url)
 	            .then(async(result) => {	  
 	            let text = '';
