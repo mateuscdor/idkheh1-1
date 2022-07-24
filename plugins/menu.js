@@ -69,9 +69,8 @@ let button = [
 await bosco.send5ButImg(from, menu, bot_footer, bot_img, button) 
 };
 
-module.exports = {
-  name: "menu", 
-  command: ".menu", 
+module.exports = { 
+  command: "menu", 
   Type: "misc", 
   isDependent: false, 
   desc: "used to display commands.", 
