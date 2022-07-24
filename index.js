@@ -77,19 +77,6 @@ fs.readdirSync('./plugins/sql/').forEach(plugin => {
     }
   }
     })
-
-    // plugin function
-    bosco.plugins = new Map();
-    fs.readdir("./plugins", (err, files) => {
-        if (err) return console.error(e);
-        files.forEach((pluginFile) => {
-            if (pluginFile.endsWith(".js")) {
-                let pluginName = pluginFile.replace(".js", "");
-                const pluginn = require(`./plugins/${pluginName}`);
-                bosco.plugins.set(pluginName, pluginn);
-            }
-        });
-    });
     
     bosco.ev.on('connection.update', async (update) => {
 const { connection, lastDisconnect } = update	    
@@ -107,10 +94,25 @@ let reason = new Boom(lastDisconnect?.error)?.output?.statusCode
 } else if (connection === 'qr') {
 console.log('scan qr ...')
 } else if (connection === 'connecting') {
-console.log('connecting')
+console.log('Connecting to WhatsApp... Please wait')
 } else if (connection === 'open') {
-console.log('connected')
+console.log('successfully connected ✅')
 //await bosco.sendMessage(`917736622139@s.whatsapp.net`, {text: "Bot connected" })
+    console.log('⬇️ Installing plugins...')
+    // plugin function
+    bosco.plugins = new Map();
+    fs.readdir("./plugins", (err, files) => {
+        if (err) return console.error(e);
+        files.forEach((pluginFile) => {
+            if (pluginFile.endsWith(".js")) {
+                let pluginName = pluginFile.replace(".js", "");
+                const pluginn = require(`./plugins/${pluginName}`);
+                bosco.plugins.set(pluginName, pluginn);
+            }
+        });
+    });
+    console.log('✅ Plugins installed!')
+
 }
 })
 
