@@ -116,6 +116,8 @@ console.log('connected')
 
     bosco.ev.on('creds.update', () => saveState)
 
+    bosco.public = true
+
     store.bind(bosco.ev)
 
 //------------------------------------------------//
@@ -126,7 +128,7 @@ console.log('connected')
             if (!msg.message) return
             msg.message = (Object.keys(msg.message)[0] === 'ephemeralMessage') ? msg.message.ephemeralMessage.message : msg.message
             if (msg.key && msg.key.remoteJid === 'status@broadcast') return
-            //if (!publik && !msg.key.fromMe && m.type === 'notify') return
+            if (!bosco.public && !msg.key.fromMe && m.type === 'notify') return
             if (msg.key.id.startsWith('BAE5') && msg.key.id.length === 16) return
             msg = smsg(bosco, msg, store)
             msg.isBaileys = msg.key.id.startsWith('BAE5') || msg.key.id.startsWith('3EB0')
@@ -197,7 +199,11 @@ console.log('connected')
             global.isQuotedText = type === 'extendedTextMessage' && content.includes('conversation')
             global.isQuotedextendedText = type === 'extendedTextMessage' && content.includes('extendedTextMessage')
 
-            //connect body with plugin
+//public/self
+if (!bosco.public) {
+if (!msg.key.fromMe) return
+  }      
+      //connect body with plugin
             if (body.startsWith(handlers)) {
                 let argsm = body.slice(1).trim().split(/ +/g);
                 global.args = body.trim().split(/ +/).slice(1)
