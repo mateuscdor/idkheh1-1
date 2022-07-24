@@ -1,6 +1,6 @@
 const fs = require("fs");
 const {getBuffer} = require("../lib/myfunc");
-async function execute(bosco,msg) {
+async function execute(bosco, msg, match) {
 let alivevid = await getBuffer(alive_vid)
     const buttons = [
         { urlButton: { displayText: `Instagram`, url: 'https://instagram.com/pepe.sir_?' } },
