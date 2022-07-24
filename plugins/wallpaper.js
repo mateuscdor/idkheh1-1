@@ -8,9 +8,8 @@ let buttons = [
    ]
 let pepe = ''
 pepe += '_Title_        : *' + result.title + '*\n\n';
-pepe += '_Category_     : *' + result.type + '*\n\n';
-peep += '_Detail_       : *' + result.source + '*\n\n';
-pepe += '_Media url_    : *' + result.image[2] || result.image[1] || result.image[0] + '*\n\n';
+pepe += '_Category_     : *' + result.type + '*\n\n';pepe += '_Detail_       : *' + result.source + '*\n\n';
+pepe += '_Media url_    : *' + result.image[2] || result.image[1] || result.image[0] + '*';
   let buttonMessage = {
   image: { url: result.image[0] },
   caption: pepe,
