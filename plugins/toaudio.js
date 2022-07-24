@@ -1,5 +1,6 @@
 const fs = require("fs");
-const { exec, spawn } = require("child_process");
+const { exec } = require("child_process");
+const {getRandom} = require('../lib/functions')
 async function execute(bosco, msg, match) {
 var quoted = msg.quoted ? msg.quoted : msg
 if (isQuotedVideo || isQuotedAudio) {
