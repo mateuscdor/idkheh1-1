@@ -19,7 +19,7 @@ const execute = async (bosco, msg) => {
 ┊${command}
 ┊
 └────────────────────𔒝`;
-        await bosco.sendMessage(from, {text : help },{quoted : msg});
+        await bosco.sendMessage(msg.key.remoteJid, {text : help },{quoted : msg});
 
             };
 module.exports = {
