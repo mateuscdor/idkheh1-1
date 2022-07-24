@@ -10,7 +10,7 @@ async function execute(bosco, msg, match) {
     let repo = repos.replace(/.git$/, '');
     let url = `https://api.github.com/repos/${user}/${repos}/zipball`;
     let filename = (await fetch(url, { method: 'HEAD' })).headers.get('content-disposition').match(/attachment; filename=(.*)/)[1];
-    await bosco.sendMedia(msg.key.remoteJid, url, msg, { contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply: { title: bot_name, body: bot_prefix, previewType: "PHOTO", thumbnail: bot_img, sourceUrl: match } }, fileName: filename });
+    await bosco.sendMedia(msg.key.remoteJid, url, msg, { contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply: { title: bot_name, body: bot_footer, previewType: "PHOTO", thumbnail: bot_img, sourceUrl: match } }, fileName: filename });
 }
 module.exports = {
     command: "gitclone", 
