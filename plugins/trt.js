@@ -4,7 +4,7 @@ async function execute(bosco, msg, match) {
         return reply(`_Example : ${handlers}trt {ml} text_`);
     let
         LANG = 'en', trtMessage = match;
-    if (langMatch = lang.match("\\{([a-z]{2})\\}")) {
+    if (langMatch = match.match("\\{([a-z]{2})\\}")) {
         LANG = langMatch[1];
         trtMessage = trtMessage.replace(langMatch[0], "");
     }
