@@ -19,7 +19,7 @@ plugins.forEach((plugin) => {
                 if (plugin.Type === 'misc')
                     misc += `\n│❤️⃝➤⃟̱̱̱̱̄̄̄̄🐦 *${handlers}${plugin.command}*\n│`
                 if (plugin.Type === 'tools')
-                    tools += `\n│❤️⃝➤⃟̱̱̱̱̄̄̄̄🐦 *${handlers}${plugin.command}*\n│`
+                    tools += `\n│💘⃝➤⃟̱̱̱̱̄̄̄̄🦄 *${handlers}${plugin.command}*\n│`
             }
 });
 let menu = `╭────────────────╮
