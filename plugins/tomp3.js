@@ -7,7 +7,7 @@ let media = await bosco.downloadAndSaveMediaMessage(quoted);
  let audio = await toAudio(media, 'mp4')
  bosco.sendMessage(msg.key.remoteJid, {document: audio, mimetype: 'audio/mpeg', fileName: `${bot_name}.mp3`}, { quoted : msg })
 } else {
-reply(_Reply to video/audio_)
+reply('_Reply to video/audio_')
 }
 }
 
