@@ -7,6 +7,7 @@ const pipeline = promisify(stream.pipeline);
 
 const execute = async (bosco, msg) => { 
 if ((!isQuotedImage) && (!isImage))  return await reply("_Reply to an image_");
+        var quoted = msg.quoted ? msg.quoted : msg
         var location = await bosco.downloadAndSaveMediaMessage(quoted);
         var form = new FormData();
         form.append('image_file', fs.createReadStream(location));
