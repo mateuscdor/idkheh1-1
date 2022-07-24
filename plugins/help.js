@@ -4,7 +4,7 @@ const execute = async (bosco, msg) => {
 
         plugins.forEach((plugin) => {
             if (!plugin.isDependent) {
-                    command += `\n┊▢ *${plugin.command}*`
+                    command += `\n┊▢ *${handlers}${plugin.command}*`
             }
 });
         let help = `──────〔 𝖕𝖊𝖕𝖊𝖘𝖎𝖗 〕──────
@@ -23,8 +23,7 @@ const execute = async (bosco, msg) => {
 
             };
 module.exports = {
-    name: 'help',
-    command: '.help',
+    command: 'help',
     Type: 'misc',
     isDependent: false,
     desc: 'used to get bot commands',
