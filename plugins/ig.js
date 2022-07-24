@@ -1,7 +1,7 @@
 const hx = require('hxz-api');
 const {isUrl, getBuffer} = require("../lib/myfunc");
 const igRegex = /(?:https?:\/\/)?(?:www\.)?(?:instagram\.com(?:\/.+?)?\/(p|reel|tv)\/)([\w-]+)(?:\/)?(\?.*)?$/
-const execute = async (pepe, msg) => {
+const execute = async (pepe, msg, match) => {
   if (!match)
             return await reply(`_Example : ${handlers}ig link_`);
         const vid = igRegex.exec(query);
