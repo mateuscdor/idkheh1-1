@@ -38,7 +38,7 @@ if (vid) {
 };
 
 module.exports = {
-  command: ".ig",
+  command: "ig",
   Type: "download", 
   isDependent: false, 
   desc: "used to download media from instagram.", 
