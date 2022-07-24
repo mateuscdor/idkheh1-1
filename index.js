@@ -61,8 +61,6 @@ fs.readdirSync('./plugins/sql/').forEach(plugin => {
     }
 });
 
-const plugindb = require('./plugins/sql/plugin');
-
  async function connectToWhatsApp () {
     await config.DATABASE.sync();
     const { version, isLatest } = await fetchLatestBaileysVersion()
@@ -79,19 +77,7 @@ const plugindb = require('./plugins/sql/plugin');
     }
   }
     })
-    // External plugins function
-    var eplugins = await plugindb.PluginDB.findAll();
-        eplugins.map(async (plugin) => {
-            if (!fs.existsSync('./plugins/' + plugin.dataValues.name)) {
-                console.log(plugin.dataValues.name);
-                var response = await got(plugin.dataValues.url);
-                if (response.statusCode == 200) {
-                    fs.writeFileSync('./plugins/' + plugin.dataValues.name , response.body);
-                    console.log(response.body)
-                    require('./plugins/' + plugin.dataValues.name);
-                }     
-            }
-        });
+
     // plugin function
     bosco.plugins = new Map();
     fs.readdir("./plugins", (err, files) => {
@@ -129,22 +115,15 @@ console.log('connected')
 })
 
     bosco.ev.on('creds.update', () => saveState)
+
     store.bind(bosco.ev)
+
+//------------------------------------------------//
     bosco.ev.on('messages.upsert', async m => {
         try{
             if (!m.messages) return;
             var msg = m.messages[0]
             if (!msg.message) return
-//Auto reaction
-	    var reactm = await getMessage(m.messages[0].key.remoteJid,'react');
-            if (reactm !== false) {
-            let rfoo = reactm.message
-            var rem = emojiStringToArray(rfoo)
-            //console.log(rem)
-            let emote = await pickRandom(rem)
-            //console.log(emote)
-            bosco.sendMessage(m.messages[0].key.remoteJid, { react: { text: emote, key: msg.key }})
-            }
             msg.message = (Object.keys(msg.message)[0] === 'ephemeralMessage') ? msg.message.ephemeralMessage.message : msg.message
             if (msg.key && msg.key.remoteJid === 'status@broadcast') return
             //if (!publik && !msg.key.fromMe && m.type === 'notify') return
@@ -154,18 +133,17 @@ console.log('connected')
             // Bot functions
             var msg = m.messages[0]
             const { type, now, fromMe } = msg
-            global.content = JSON.stringify(msg.message)
-            global.quoted = msg.quoted ? msg.quoted : msg
+            const content = JSON.stringify(msg.message)
+            const quoted = msg.quoted ? msg.quoted : msg
             const body = (type === 'conversation') ? msg.message.conversation : (type == 'imageMessage') ? msg.message.imageMessage.caption : (type == 'videoMessage') ? msg.message.videoMessage.caption : (type == 'extendedTextMessage') ? msg.message.extendedTextMessage.text : (type == 'buttonsResponseMessage') ? msg.message.buttonsResponseMessage.selectedButtonId : (type == 'listResponseMessage') ? msg.message.listResponseMessage.singleSelectReply.selectedRowId : (type == 'templateButtonReplyMessage') ? msg.message.templateButtonReplyMessage.selectedId : (type === 'messageContextInfo') ? (msg.message.buttonsResponseMessage?.selectedButtonId || msg.message.listResponseMessage?.singleSelectReply.selectedRowId ) : ''
             global.bot_img = await getBuffer(botimg)
-            global.from = msg.key.remoteJid
-            global.isGroup = from.endsWith('@g.us')
+            const from = msg.key.remoteJid            
             // reply
             global.reply = (teks) => {
                 bosco.sendMessage(from, { text: teks }, { quoted: msg })
             }
             //Button document ✓
-            global.bosco_sentbutdocument = async(id, text1, desc1, gam1, but = [], options = {}) => {	
+            global.sentbutdocument = async(id, text1, desc1, gam1, but = [], options = {}) => {	
                 const buttonMessage = {
                     contextInfo: options,
                     document: fs.readFileSync('./media/file.docx'),
@@ -197,9 +175,7 @@ console.log('connected')
                             reply(`${err}`)
                             }
                             }
-            global.type = msg
-            global.fromMe = msg
-            global.now = msg
+            //Message types
             global.isImage = (type === 'imageMessage')
             global.isVideo = (type === 'videoMessage')
             global.isSticker = (type == 'stickerMessage')
@@ -220,44 +196,43 @@ console.log('connected')
             global.isQuotedReply = type === 'extendedTextMessage' && content.includes('Message')
             global.isQuotedText = type === 'extendedTextMessage' && content.includes('conversation')
             global.isQuotedextendedText = type === 'extendedTextMessage' && content.includes('extendedTextMessage')
+
             //connect body with plugin
             if (body.startsWith(handlers)) {
                 let argsm = body.slice(1).trim().split(/ +/g);
-                global.args = body.trim().split(/ +/).slice(1)
+                let args = body.trim().split(/ +/).slice(1)
                 let plugin = argsm.shift().toLowerCase();
-                global.q = args.join(" ")
-                global.qtext = msg.quoted ? msg.quoted.text ? msg.quoted.text : q ? q : msg.text : q ? q : msg.text
-                console.log({ plugin, argsm });
+                let q = args.join(" ")
+                //console.log({ plugin, args });
+                if (isQuotedTeks) {
+                  var match = msg.quoted.text;
+                } else {
+                  var match = q;
+                }   
                 if (bosco.plugins.has(plugin)) {
-                    try { bosco.plugins.get(plugin).execute(bosco, msg);
+                    try { bosco.plugins.get(plugin).execute(bosco, match, msg);
                     } catch (error) {
                         console.log(error);
                     }
                 }
             } else if (body.startsWith('https://youtu.be/')) { //auto download yt
-                global.args = body.trim().split(/ +/).slice(1)
-                global.q = body.trim()
-                bosco.plugins.get(`yt`).execute(bosco, msg);
+                let args = body.trim().split(' ')
+                let match = args[0]
+                bosco.plugins.get(`yt`).execute(bosco, match, msg);
             } else if  (body.startsWith('https://www.instagram.com/')) { //auto download ig
-                global.args = body.trim().split(/ +/).slice(1)
-                global.q = body.trim()
-                bosco.plugins.get(`ig`).execute(bosco, msg);
+                let args = body.trim().split(' ')
+                let match = args[0]
+                bosco.plugins.get(`ig`).execute(bosco, match, msg);
             }            
-            const mentionByTag = type == "extendedTextMessage" && msg.message.extendedTextMessage.contextInfo != null ? msg.message.extendedTextMessage.contextInfo.mentionedJid : []
-            const user = mentionByTag[0]
-            const botNumber = bosco.user.id ? bosco.user.id.split(":")[0]+"@s.whatsapp.net" : bosco.user.id
-            let mentionnum = botNumber
-            if (user === mentionnum) {
-                bosco.sendMessage(from, {audio: { url: 'https://a.uguu.se/ZZzcXMsu.mp3' }, contextInfo: {forwardingScore: 9999,externalAdReply: {showAdAttribution: true, title: bot_name,body: bot_footer,previewType:"PHOTO",thumbnail: bot_img,sourceUrl: 'Wa.me/+917736622139?text=Hello%20P3P3%20Bro' }}, mimetype: 'audio/mpeg', duration: 359996400, sendEphemeral: true , fileLength : 999999999999 }, { quoted : msg })
-            }
         }catch (err){
             console.log(err)
         }
     })
 
-    /*bosco.ev.on('group-participants.update', async (anu) => {
-    require('./message/group.js')(bosco, anu)
-    });  */
+
+
+//------------------------------------------------//
+    //Welcome 
     bosco.ev.on('group-participants.update', async (anu) => {
        // console.log(anu)
         try {
@@ -286,7 +261,9 @@ await bosco.sendMessage(anu.id,{ text : gb.message.replace('&title', metadata.su
             console.log(err)
         }
     })
+
     bosco.reply = (from, text) => bosco.sendMessage(from, { text: text }, { quoted: msg })     
+
     //Set status bio bot 
     bosco.setStatus = (status) => {
         bosco.query({
@@ -322,8 +299,7 @@ await bosco.sendMessage(anu.id,{ text : gb.message.replace('&title', metadata.su
     return decode.user && decode.server && decode.user + '@' + decode.server || jid
     } else return jid
     }
-    
-    
+        
     bosco.ev.on('contacts.update', update => {
         for (let contact of update) {
             let id = bosco.decodeJid(contact.id)
@@ -348,11 +324,7 @@ await bosco.sendMessage(anu.id,{ text : gb.message.replace('&title', metadata.su
     (store.contacts[id] || {})
     return (withoutContact ? '' : v.name) || v.subject || v.verifiedName || PhoneNumber('+' + jid.replace('@s.whatsapp.net', '')).getNumber('international').replace(new RegExp("[()+-/ +/]", "gi"), "") 
      }
-        
-        
-      
-    
-    
+           
     //SEND 1 KONTAK
     bosco.sendKontak = (jid, nomor, nama, org = "", quoted = '', opts = {} ) => {
     const vcard ="BEGIN:VCARD\n" 
@@ -368,10 +340,7 @@ await bosco.sendMessage(anu.id,{ text : gb.message.replace('&title', metadata.su
     +"item4.X-ABLabel:Region\n"
     +"END:VCARD"
      bosco.sendMessage(jid,{contacts: {displayName: nama, contacts: [{ vcard }] }, ...opts},{quoted})
-    };
-    
-    
-    
+    };    
     
     /**
     * 
@@ -486,9 +455,7 @@ await bosco.sendMessage(anu.id,{ text : gb.message.replace('&title', metadata.su
     await bosco.relayMessage(jid, waMessage.message, { messageId:  waMessage.key.id })
     return waMessage
     }
-        
-        
-        
+                
     bosco.cMod = (jid, copy, text = '', sender = bosco.user.id, options = {}) => {
     let mtype = Object.keys(copy.message)[0]
     let isEphemeral = mtype === 'ephemeralMessage'
@@ -512,10 +479,7 @@ await bosco.sendMessage(anu.id,{ text : gb.message.replace('&title', metadata.su
     copy.key.fromMe = sender === bosco.user.id
     return proto.WebMessageInfo.fromObject(copy)
     } 
-    
-    
-      
-    
+        
         /**
          * 
          * @param {*} jid 
@@ -535,9 +499,6 @@ await bosco.sendMessage(anu.id,{ text : gb.message.replace('&title', metadata.su
             }
             bosco.sendMessage(jid, buttonMessage, { quoted, ...options })
         }
-    
-    
-    
     
     /**
          * 
@@ -575,8 +536,7 @@ await bosco.sendMessage(anu.id,{ text : gb.message.replace('&title', metadata.su
      bosco.sendVideo = async (jid, yo, caption = '', quoted = '', gif = false, options) => {
          //let buffer = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
          return await bosco.sendMessage(jid, { video: yo, caption: caption, gifPlayback: gif, ...options }, { quoted })
-     }
-    
+     }    
     
     /**
          * 
@@ -647,27 +607,7 @@ await bosco.sendMessage(anu.id,{ text : gb.message.replace('&title', metadata.su
         await bosco.sendMessage(jid, { sticker: { url: buffer }, ...options }, { quoted })
         return buffer
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-     
-    
+       
     /**
      * send group invitation via message
      * @param {string} jid gorupJid 
@@ -692,8 +632,7 @@ await bosco.sendMessage(anu.id,{ text : gb.message.replace('&title', metadata.su
         })
         const m = generateWAMessageFromContent(participant, msg, options)
        return await bosco.relayMessage(participant, m.message, { messageId: m.key.id })
-    }
-    
+    }    
     
     ///Button Image ✓
     bosco.sendButImage = async(id, text1, desc1, gam1, but = [], options1 = {}) => {
@@ -749,8 +688,7 @@ await bosco.sendMessage(anu.id,{ text : gb.message.replace('&title', metadata.su
     }
     }), {});
     return await bosco.relayMessage(id, template.message,{ messageId: template.key.id })                   
-    }
-    
+    }    
     
     //Button Image 2 ✓
     bosco.send5ButLoc = async(id, text1, desc1, gam1, but = []) => {
@@ -810,18 +748,11 @@ await bosco.sendMessage(anu.id,{ text : gb.message.replace('&title', metadata.su
     
     return await bosco.sendMessage(id, buttonMessage,options1)
     } 
-    
-    
-    
+        
     return bosco
     }
+//------------------------------------------------//
     
     connectToWhatsApp()
-    
-    let file = require.resolve(__filename)
-    fs.watchFile(file, () => {
-        fs.unwatchFile(file)
-        console.log(chalk.redBright(`Update ${__filename}`))
-        delete require.cache[file]
-        require(file)
-    })
+ 
+// End :) 
