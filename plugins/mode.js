@@ -1,8 +1,6 @@
 const fs = require("fs");
 const {getBuffer} = require("../lib/myfunc");
 async function execute(bosco, msg, match) {
-
-  if (!msg.key.fromMe) return reply('_only for owner_')
   if (bosco.public === true){
 mode = 'public'
 } else {
@@ -16,14 +14,14 @@ bosco.sendMessage(msg.key.remoteJid, { caption: `working mode configuration `, i
   let Type = args.shift();
     switch (Type) {
         case "private": case "self": {
-
+  if (!msg.key.fromMe) return reply('_only for owner_')
 bosco.public = false
    reply('_Private mode enabled ✅_')
 
     }
         break
    case "public": {
-
+  if (!msg.key.fromMe) return reply('_only for owner_')
 bosco.public = true
    reply('_Public mode enabled ✅_')
     }
