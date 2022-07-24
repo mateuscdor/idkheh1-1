@@ -10,8 +10,7 @@ let alivevid = await getBuffer(alive_vid)
 }
 
 module.exports = { 
-    name: "alive", 
-    command: ".alive", 
+    command: "alive", 
     Type: "misc", 
     isDependent: false, 
     desc: "check the bot is alive or not", 
