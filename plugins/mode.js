@@ -11,7 +11,7 @@ mode = 'private'
   if (!match) {
 var but = [{buttonId: `${handlers}mode public`, buttonText: { displayText: 'public' }, type: 1 },
 {buttonId: `${handlers}mode private`, buttonText: { displayText: 'private' }, type: 1 }]
-bosco.sendMessage(from, { caption: `working mode configuration `, image: { url: botimg }, buttons: but, footer: `Current mode : ${mode}` }, { quoted: msg })
+bosco.sendMessage(msg.key.remoteJid, { caption: `working mode configuration `, image: { url: botimg }, buttons: but, footer: `Current mode : ${mode}` }, { quoted: msg })
   }
   let Type = args.shift();
     switch (Type) {
