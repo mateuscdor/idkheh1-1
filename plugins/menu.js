@@ -1,4 +1,5 @@
 const execute = async (bosco, msg) => {
+const pushname = msg.pushName || "No Name"
 let plugins = bosco.plugins;
         let group = '';
         let download = '';
@@ -22,14 +23,25 @@ plugins.forEach((plugin) => {
                     tools += `\n│💘⃝➤⃟̱̱̱̱̄̄̄̄🦄 *${handlers}${plugin.command}*\n│`
             }
 });
+
+if (bosco.public === true){
+mode = 'public'
+} else {
+mode = 'private'
+}
+
 let menu = `╭────────────────╮
 │
-│ user : 
-│ bot : bot_name
-│ owner : pepesir   
-│ mode : public
-│ version : 1.0.0
-│ prefix : {handlers}
+│ 
+│🍭⃝❉⃟🎈 user : ${pushname}
+│
+│🍭⃝❉⃟🎈 bot : ${bot_name}
+│
+│🍭⃝❉⃟🎈 mode : ${mode}
+│
+│🍭⃝❉⃟🎈 version : 1.0.0
+│
+│🍭⃝❉⃟🎈 prefix : ${handlers}
 │
 │     
 ╰────────────────╯
