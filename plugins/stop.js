@@ -10,8 +10,10 @@ const participants = isGroup ? await groupMetadata.participants : ''
 const groupAdmins = isGroup ? await getGroupAdmins(participants) : ''
 const isGroupAdmins = isGroup ? groupAdmins.includes(sender) : false
 
-if (!isGroupAdmins) return reply('_Feature can only be used by group admins_')
-match = match.match(/[\'\"\“](.*?)[\'\"\“]/gsm);
+if (isGroup) {
+ if (!isGroupAdmins) return reply('_Feature can only be used by group admins_')
+}
+    match = match.match(/[\'\"\“](.*?)[\'\"\“]/gsm);
     if (match === null) {
         return await reply(`_Example : ${handlers}stop "hii"_`)
     }
