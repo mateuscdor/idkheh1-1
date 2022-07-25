@@ -47,7 +47,7 @@ async function execute(bosco, msg, match) {
         await reply(`_Testing status..._`)
         let _ramTotal = (ramTotal + ' MB')
         let neww = performance.now()
-        let text =`
+        let status =`
 *「 Status 」*
 
 OS : *${OS}*
@@ -63,7 +63,7 @@ Internet OUT : *${netsOut}*
 let button = [{"buttonId": `${handlers}infobot`,"buttonText": {"displayText": `Info bot`},"type": "RESPONSE"},
                     {"buttonId": `${handlers}menu`,"buttonText": {"displayText": `Menu`},"type": "RESPONSE"}]
 
-pepe.sendButLoc(msg.key.remoteJid, text,bot_footer,bot_img, button)
+bosco.sendButLoc(msg.key.remoteJid, status,bot_footer,bot_img, button)
 } catch (err) {
 reply(err)
 }
