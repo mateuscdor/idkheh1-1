@@ -45,7 +45,7 @@ const config = require('./config');
 const { getMessage } = require("./plugins/sql/greetings");
 const { exec, spawn } = require("child_process");
 const store = makeInMemoryStore({ logger: logg().child({ level: 'silent', stream: 'store' }) })
-const WhatsAsenaDB = config.DATABASE.define('WhatsAsena', {
+const boscoDB = config.DATABASE.define('bosco', {
     info: {
       type: DataTypes.STRING,
       allowNull: false
