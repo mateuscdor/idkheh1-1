@@ -17,13 +17,16 @@ if (!isBotGroupAdmins) return reply('_Bot has to be group admin to use this feat
 if (!match) return bosco.sendButMessage(msg.key.remoteJid, `Group Mode`, bot_footer, [
  {buttonId: `${handlers}group open`, buttonText: {displayText: Open },type: 1},
  {buttonId: `${handlers}group close`, buttonText: { displayText: Close },type: 1}], msg); 
-
-if (args[0] == "close") {
-pepe.groupSettingUpdate(from, 'announcement')
-setReply(`Sukses mengizinkan hanya admin yang dapat mengirim pesan ke grup ini`)
-} else if (args[0] == "open") {
-pepe.groupSettingUpdate(from, 'not_announcement')
-setReply(`Sukses mengizinkan semua peserta dapat mengirim pesan ke grup ini`)
+let Type = args.shift();
+    switch (Type) {
+        case "open": {
+bosco.groupSettingUpdate(from, 'not_announcement')
+}
+break
+case "close" {
+bosco.groupSettingUpdate(from, 'announcement')
+}
+break
 }
 }
 module.exports = { 
