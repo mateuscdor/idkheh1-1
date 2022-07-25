@@ -10,7 +10,9 @@ const participants = isGroup ? await groupMetadata.participants : ''
 const groupAdmins = isGroup ? await getGroupAdmins(participants) : ''
 const isGroupAdmins = isGroup ? groupAdmins.includes(sender) : false
 
-if (!isGroupAdmins) return reply('_Feature can only be used by group admins_')
+if (isGroup) {
+ if (!isGroupAdmins) return reply('_Feature can only be used by group admins_')
+}
 match = match.match(/[\'\"\“](.*?)[\'\"\“]/gsm);
     if (match === null) {
         filtreler = await FilterDb.getFilter(msg.key.remoteJid);
