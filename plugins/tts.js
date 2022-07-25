@@ -20,7 +20,7 @@ async function execute(bosco, msg, match) {
     } catch {
         return await reply("_Error ;)_");
     }
-    await bosco.sendMessage(msg.key.remoteJid, { audio: buffer, mimetype: 'audio/mp4', duration: 359996400, ptt: false, contextInfo: { forwardingScore: 9999, externalAdReply: { title: bot_name, body: bot_footer, previewType: "PHOTO", thumbnail: bot_img, sourceUrl: owner_link } }, sendEphemeral: true }, { quoted: msg });
+    await bosco.sendMessage(msg.key.remoteJid, { audio: buffer, mimetype: 'audio/mp4', duration: 359996400, ptt: false, contextInfo: { forwardingScore: 9999, externalAdReply: { title: bot_footer, body: '', previewType: "PHOTO", thumbnail: bot_img, sourceUrl: owner_link } }, sendEphemeral: true }, { quoted: msg });
 
 }
 
