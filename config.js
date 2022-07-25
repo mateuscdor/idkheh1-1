@@ -6,11 +6,11 @@ function convertToBool(text, fault = 'true') {
     return text === fault ? true : false;
 }
 
-const DATABASE_URL = process.env.DATABASE_URL === undefined ? './whatsasena.db' : process.env.DATABASE_URL;
+const DATABASE_URL = process.env.DATABASE_URL === undefined ? './bosco.db' : process.env.DATABASE_URL;
 const DEBUG = process.env.DEBUG === undefined ? false : convertToBool(process.env.DEBUG);
 module.exports = {
     DATABASE_URL: DATABASE_URL,
-    DATABASE: DATABASE_URL === './whatsasena.db' ? new Sequelize({ dialect: "sqlite", storage: DATABASE_URL, logging: DEBUG }) : new Sequelize(DATABASE_URL, { dialectOptions: { ssl: { require: true, rejectUnauthorized: false } }, logging: DEBUG }),
+    DATABASE: DATABASE_URL === './bosco.db' ? new Sequelize({ dialect: "sqlite", storage: DATABASE_URL, logging: DEBUG }) : new Sequelize(DATABASE_URL, { dialectOptions: { ssl: { require: true, rejectUnauthorized: false } }, logging: DEBUG }),
     DEBUG: DEBUG
 };
 
