@@ -15,8 +15,8 @@ if (!isGroup) return reply('_Feature can only be used in groups_')
 if (!isGroupAdmins) return reply('_Feature can only be used by group admins_')
 if (!isBotGroupAdmins) return reply('_Bot has to be group admin to use this feature_')
 if (!match) return bosco.sendButMessage(msg.key.remoteJid, `Group Mode`, bot_footer, [
- {buttonId: `${handlers}group open`, buttonText: {displayText: Open },type: 1},
- {buttonId: `${handlers}group close`, buttonText: { displayText: Close },type: 1}], msg); 
+ {buttonId: `${handlers}group open`, buttonText: {displayText: 'Open' },type: 1},
+ {buttonId: `${handlers}group close`, buttonText: { displayText: 'Close' },type: 1}], msg); 
 let Type = args.shift();
     switch (Type) {
         case "open": {
