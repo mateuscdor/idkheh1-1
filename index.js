@@ -238,7 +238,7 @@ var filtreler = await FilterDb.getFilter(msg.key.remoteJid);
     if (!filtreler) return; 
     filtreler.map(
         async (filter) => {
-            pattern = new RegExp(filter.dataValues.regex ? filter.dataValues.pattern : ('\\b(' + filter.dataValues.pattern + ')\\b'), 'gm');
+            let pattern = new RegExp(filter.dataValues.regex ? filter.dataValues.pattern : ('\\b(' + filter.dataValues.pattern + ')\\b'), 'gm');
             if (pattern.test(msg.message)) {
                 await bosco.sendMessage(msg.key.remoteJid,{ text : filter.dataValues.text }, {quoted: msg });
             }
