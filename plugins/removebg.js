@@ -20,7 +20,7 @@ if ((!isQuotedImage) && (!isImage))  return await reply("_Reply to an image_");
 		    rbg,
 		    fs.createWriteStream('rbg.png')
         );
-  await bosco.sendMessage(from, { image: fs.readFileSync('rbg.png'), contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply: { title: bot_name, body: bot_footer, previewType: "PHOTO", thumbnail: bot_img, sourceUrl: owner_link } } }, { quoted: msg });
+  await bosco.sendMessage(from, { image: fs.readFileSync('rbg.png'), contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply: { title: bot_footer, body: '', previewType: "PHOTO", thumbnail: bot_img, sourceUrl: owner_link } } }, { quoted: msg });
 };
 
 module.exports = { 
