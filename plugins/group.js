@@ -23,7 +23,7 @@ let Type = args.shift();
 bosco.groupSettingUpdate(from, 'not_announcement')
 }
 break
-case "close" {
+case "close": {
 bosco.groupSettingUpdate(from, 'announcement')
 }
 break
