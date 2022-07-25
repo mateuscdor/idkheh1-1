@@ -1,6 +1,6 @@
-const runtime = require("../lib/functions");
 async function execute(bosco, msg, match) {
-reply(`${runtime(process.uptime())}`)
+const runtime = require("../lib/functions");
+reply(`Runtime : ${runtime(process.uptime())}`)
 }
 
 module.exports = { 
