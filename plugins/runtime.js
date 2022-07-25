@@ -12,7 +12,7 @@ return dDisplay + hDisplay + mDisplay + sDisplay;
 }
 
 async function execute(bosco, msg, match) {
-reply(`*RUNTIME* : ${runtime(process.uptime())}`)
+reply(`_Runtime : ${runtime(process.uptime())}_`)
 }
 
 module.exports = { 
