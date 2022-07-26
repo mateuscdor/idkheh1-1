@@ -1,13 +1,13 @@
 const hx = require('hxz-api');
 const {isUrl, getBuffer} = require("../lib/myfunc");
-const igRegex = /(?:https?:\/\/)?(?:www\.)?(?:instagram\.com(?:\/.+?)?\/(p|reel|tv)\/)([\w-]+)(?:\/)?(\?.*)?$/
+const igRegex = / (https?:\/\/(?:www\.)?instagram\.com\/p\/([^/?#&]+)).*/
 const execute = async (pepe, msg, match) => {
   if (!match)
             return await reply(`_Example : ${handlers}ig link_`);
-        const vid = igRegex.test(match);
-if (vid) {
-
-                let url = match
+if (!igRegex.test(match))
+        return reply('_link is not valid!_');
+let [ insta ] = match.match(igRegex) || [];
+                let url = insta
 	            hx.igdl(url)
 	            .then(async(result) => {	  
 	            let text = '';
@@ -32,9 +32,7 @@ if (vid) {
                 pepe.sendMessage(msg.key.remoteJid, { image: link, jpegThumbnail: await getBuffer(i.preview), caption: `_Instagram ${i.type}_` }, { quoted: msg })                      
                }
               }
-            }).catch((err) => reply('_Error !_'))
-
-                }
+            }).catch((err) => reply('_Error !_'))                
 };
 
 module.exports = {
