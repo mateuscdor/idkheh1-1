@@ -2,9 +2,9 @@ const { performance } = require('perf_hooks')
 let osu = require('node-os-utils')
 async function execute(bosco, msg, match) {
     try {
-        let NotDetect = 'Not Detect'
+        //let NotDetect = 'Not Detect'
         let old = performance.now()
-        let cpu = osu.cpu
+        /*let cpu = osu.cpu
         let cpuCore = cpu.count()
         let drive = osu.drive
         let mem = osu.mem
@@ -44,8 +44,8 @@ async function execute(bosco, msg, match) {
                 netsOut = NotDetect
         })
         await Promise.all([p1, p2, p3, p4])
-        await reply(`_Testing status..._`)
-        let _ramTotal = (ramTotal + ' MB')
+        
+        let _ramTotal = (ramTotal + ' MB')*/
         let neww = performance.now()
         let status =`_Ping_ : ${Math.round(neww - old)} ms
 `
