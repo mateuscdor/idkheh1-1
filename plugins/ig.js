@@ -6,8 +6,7 @@ const execute = async (pepe, msg, match) => {
   if (!match)
             return await reply(`_Example : ${handlers}ig link_`);
 if (igRegex.test(match)) {
-   reply('_link is not valid!_');
-} else {
+   
 let [ insta ] = match.match(igRegex) || [];
                 let url = insta
 	            hx.igdl(url)
@@ -43,7 +42,9 @@ reply(`*Failed to download media and send videos*`)
 })
 
 })     
-}           
+} else {
+reply('_link is not valid!_');
+}          
 };
 
 module.exports = {
