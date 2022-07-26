@@ -37,7 +37,7 @@ instagramdlv3(`${url}`).then(async (data) => {
 var buf = await getBuffer(data[0].thumbnail)        
 bosco.sendMessage(msg.key.remoteJid, { video: { url: data[0].url }, jpegThumbnail:buf, caption: bot_footer }, { quoted: msg })
 }).catch((err) => {
-reply(`*Failed to download media and send videos*`)
+reply(`_Failed to download media_`)
 })
 
 })     
