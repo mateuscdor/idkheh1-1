@@ -14,14 +14,14 @@ module.exports = {
     DEBUG: DEBUG
 };
 
-global.bot_name = process.env.BOT_NAME ||'ʟɪꜱᴀ-ᴍᴅ'
+global.bot_name = process.env.BOT_NAME ||'ʙᴏꜱᴄᴏ'
 global.session_id = process.env.SESSION_ID
 global.heroku_app_name = process.env.HEROKU_APP_NAME
 global.heroku_api_key = process.env.HEROKU_API_KEY
 global.handlers = (process.env.PREFIX || '^[.,!]').trim()
 global.botimg = process.env.BOT_THUMB ||'https://telegra.ph/file/8fd47f9ccb7c39008b998.jpg'
-global.bot_footer = process.env.BOT_FOOTER ||'ᴩᴇᴩᴇꜱɪʀ'
+global.bot_footer = process.env.BOT_FOOTER ||' 「 ʙᴏꜱᴄᴏ ʙᴏᴛ 」\nᴄʀᴇᴀᴛᴇᴅ ʙy ᎮᏋᎮᏋ Sɪʀ ×፝֟͜×'
 global.alive_vid = process.env.ALIVE_VIDEO ||'https://telegra.ph/file/a209db546105ed9447d2a.mp4'
-global.alive_text = process.env.ALIVE_TEXT ||'Hᴇʏ Iᴀᴍ Aʟɪᴠᴇ'
+global.alive_text = process.env.ALIVE_TEXT ||'Bot is alive'
 global.owner_link = process.env.OWNER_LINK || 'https://instagram.com/pepe.sir_?'
 
