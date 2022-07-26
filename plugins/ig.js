@@ -5,7 +5,7 @@ const igRegex = / (https?:\/\/(?:www\.)?instagram\.com\/p\/([^/?#&]+)).*/
 const execute = async (pepe, msg, match) => {
   if (!match)
             return await reply(`_Example : ${handlers}ig link_`);
-if (!igRegex.test(match)) {
+if (igRegex.test(match)) {
    reply('_link is not valid!_');
 } else {
 let [ insta ] = match.match(igRegex) || [];
