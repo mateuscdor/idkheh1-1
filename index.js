@@ -118,7 +118,12 @@ console.log('successfully connected ✅')
 
     bosco.ev.on('creds.update', () => saveState)
 
-    bosco.public = true
+// Working mode configuration
+if (mode === 'public' || mode === 'Public' || mode === 'PUBLIC' || mode === 'publik' || mode === 'Publik' || mode === 'PUBLIK' || mode === 1 || mode === 'true') {
+bosco.public = true
+} else {
+bosco.public = false
+}
 
     store.bind(bosco.ev)
 
