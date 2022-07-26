@@ -1,14 +1,13 @@
 const hx = require('hxz-api');
 const { instagramdl, instagramdlv2, instagramdlv3 } = require('@bochilteam/scraper');
 const {isUrl, getBuffer} = require("../lib/myfunc");
-const igRegex = / (https?:\/\/(?:www\.)?instagram\.com\/p\/([^/?#&]+)).*/
-const execute = async (pepe, msg, match) => {
+const igRegex = /(?:https?:\/\/)?(?:www\.)?(?:instagram\.com(?:\/.+?)?\/(p|reel|tv)\/)([\w-]+)(?:\/)?(\?.*)?$/
+const execute = async (bosco, msg, match) => {
   if (!match)
             return await reply(`_Example : ${handlers}ig link_`);
-if (!igRegex.test(match)) {
-   
-let [ insta ] = match.match(igRegex) || [];
-                let url = insta
+const vid = igRegex.exec(match);
+if (vid) {
+                let url = match
 	            hx.igdl(url)
 	            .then(async(result) => {	  
 	            let text = '';
@@ -22,21 +21,21 @@ let [ insta ] = match.match(igRegex) || [];
             text += '⬙ _Type_              : ' + result.medias[0].type + '\n\n';
             text += '⬙ _No of media_       : ' + result.medias.length + '\n\n';
             text += '⬙ _Url_               : ' + url + '';        	                                  	                      	            
-                pepe.sendMessage(msg.key.remoteJid, { image: { url: result.user.profilePicUrl },contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: bot_footer , mediaType: 2, thumbnail: bot_img, mediaUrl: url }}, caption: text, jpegThumbnail: await getBuffer(result.user.profilePicUrl) }, { quoted: msg });
+                bosco.sendMessage(msg.key.remoteJid, { image: { url: result.user.profilePicUrl },contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: bot_footer , mediaType: 2, thumbnail: bot_img, mediaUrl: url }}, caption: text, jpegThumbnail: await getBuffer(result.user.profilePicUrl) }, { quoted: msg });
 
 		        for(let i of result.medias) {		
 		        if(i.url.includes('mp4')){		           			    				
 				let link = await getBuffer(i.url)
-                pepe.sendMessage(msg.key.remoteJid, { video: link, jpegThumbnail: await getBuffer(i.preview), caption: `_Instagram ${i.type}_` }, { quoted: msg })
+                bosco.sendMessage(msg.key.remoteJid, { video: link, jpegThumbnail: await getBuffer(i.preview), caption: `_Instagram ${i.type}_` }, { quoted: msg })
                 } else {
                 let link = await getBuffer(i.url)
-                pepe.sendMessage(msg.key.remoteJid, { image: link, jpegThumbnail: await getBuffer(i.preview), caption: `_Instagram ${i.type}_` }, { quoted: msg })                      
+                bosco.sendMessage(msg.key.remoteJid, { image: link, jpegThumbnail: await getBuffer(i.preview), caption: `_Instagram ${i.type}_` }, { quoted: msg })                      
                }
               }
             }).catch((err) => {
 instagramdlv3(`${url}`).then(async (data) => {            
 var buf = await getBuffer(data[0].thumbnail)        
-pepe.sendMessage(msg.key.remoteJid, { video: { url: data[0].url }, jpegThumbnail:buf, caption: bot_footer }, { quoted: msg })
+bosco.sendMessage(msg.key.remoteJid, { video: { url: data[0].url }, jpegThumbnail:buf, caption: bot_footer }, { quoted: msg })
 }).catch((err) => {
 reply(`*Failed to download media and send videos*`)
 })
