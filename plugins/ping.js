@@ -2,9 +2,9 @@ const performance = require('perf_hooks');
 
 async function execute(bosco, msg, match) {
 try {
-let new = performance.now()
-let old = performance.now()
-reply(`_Ping_ : ${Math.round(new - old)} ms`)
+var heh = performance.now()
+var hehe = performance.now()
+reply(`_Ping_ : ${Math.round(heh - hehe)} ms`)
 } catch (err) {
 reply(err)
 }
