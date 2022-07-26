@@ -21,15 +21,15 @@ if (vid) {
             text += '⬙ _Type_              : ' + result.medias[0].type + '\n\n';
             text += '⬙ _No of media_       : ' + result.medias.length + '\n\n';
             text += '⬙ _Url_               : ' + url + '';        	                                  	                      	            
-                pepe.sendMessage(from, { image: { url: result.user.profilePicUrl },contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: bot_footer , mediaType: 2, thumbnail: bot_img, mediaUrl: url }}, caption: text, jpegThumbnail: await getBuffer(result.user.profilePicUrl) }, { quoted: msg });
+                pepe.sendMessage(msg.key.remoteJid, { image: { url: result.user.profilePicUrl },contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: bot_footer , mediaType: 2, thumbnail: bot_img, mediaUrl: url }}, caption: text, jpegThumbnail: await getBuffer(result.user.profilePicUrl) }, { quoted: msg });
 
 		        for(let i of result.medias) {		
 		        if(i.url.includes('mp4')){		           			    				
 				let link = await getBuffer(i.url)
-                pepe.sendMessage(from, { video: link, jpegThumbnail: await getBuffer(i.preview), caption: `_Instagram ${i.type}_` }, { quoted: msg })
+                pepe.sendMessage(msg.key.remoteJid, { video: link, jpegThumbnail: await getBuffer(i.preview), caption: `_Instagram ${i.type}_` }, { quoted: msg })
                 } else {
                 let link = await getBuffer(i.url)
-                pepe.sendMessage(from, { image: link, jpegThumbnail: await getBuffer(i.preview), caption: `_Instagram ${i.type}_` }, { quoted: msg })                      
+                pepe.sendMessage(msg.key.remoteJid, { image: link, jpegThumbnail: await getBuffer(i.preview), caption: `_Instagram ${i.type}_` }, { quoted: msg })                      
                }
               }
             }).catch((err) => reply('_Error !_'))
