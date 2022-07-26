@@ -24,4 +24,5 @@ global.bot_footer = process.env.BOT_FOOTER ||' 「 ʙᴏꜱᴄᴏ ʙᴏᴛ 」\n
 global.alive_vid = process.env.ALIVE_VIDEO ||'https://telegra.ph/file/a209db546105ed9447d2a.mp4'
 global.alive_text = process.env.ALIVE_TEXT ||'Bot is alive'
 global.owner_link = process.env.OWNER_LINK || 'https://instagram.com/pepe.sir_?'
+global.mode = process.env.MODE || 'private'
 
