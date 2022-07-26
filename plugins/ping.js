@@ -1,6 +1,6 @@
 const performance = require('perf_hooks');
 
-async function execute(bosco, msg, match) {
+async function execute(bosco, msg) {
 try {
 var heh = performance.now()
 var hehe = performance.now()
