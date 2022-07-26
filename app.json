@@ -9,7 +9,7 @@
       "BOT_NAME": {
         "description": "Bot name.",
         "required": false,
-        "value": "ʟɪꜱᴀ-ᴍᴅ"
+        "value": "Bosco"
       },
       "BOT_THUMB": {
         "description": "Bot thumb link.",
@@ -19,7 +19,7 @@
       "BOT_FOOTER": {
         "description": "Footer text.",
         "required": false,
-        "value": "ᴩᴇᴩᴇꜱɪʀ"
+        "value": " 「 ʙᴏꜱᴄᴏ ʙᴏᴛ 」\nᴄʀᴇᴀᴛᴇᴅ ʙy ᎮᏋᎮᏋ Sɪʀ ×፝֟͜×"
       },
       "ALIVE_VIDEO": {
         "description": "Alive video link.",
@@ -29,7 +29,7 @@
       "ALIVE_TEXT": {
         "description": "Alive text.",
         "required": false,
-        "value": "Hᴇʏ Iᴀᴍ Aʟɪᴠᴇ"
+        "value": "Bot is alive"
       },
       "OWNER_LINK": {
         "description": "Provide any link.",
