@@ -45,7 +45,7 @@ async function execute(bosco, msg, match) {
         })
         await Promise.all([p1, p2, p3, p4])
         
-        let _ramTotal = (ramTotal + ' MB')*/
+        let _ramTotal = (ramTotal + ' MB')
         let neww = performance.now()
         let status =`_Ping_ : ${Math.round(neww - old)} ms`
 
