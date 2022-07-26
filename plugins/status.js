@@ -48,17 +48,17 @@ async function execute(bosco, msg, match) {
         let _ramTotal = (ramTotal + ' MB')
         let neww = performance.now()
         let status =`
-*「 Status 」*
+      「 Status 」
 
-OS : *${OS}*
-CPU Model : *${cpuModel}*
-CPU Core : *${cpuCore} Core*
-CPU : *${cpuPer? `${cpuPer}%`:"Not Found"}*
-Ram : *${ramUsed} / ${_ramTotal}(${/[0-9.+/]/g.test(ramUsed) &&  /[0-9.+/]/g.test(ramTotal) ? Math.round(100 * (ramUsed / ramTotal)) + '%' : NotDetect})*
-Drive : *${driveUsed} / ${driveTotal} (${drivePer})*
-Ping : *${Math.round(neww - old)} ms*
-Internet IN : *${netsIn}*
-Internet OUT : *${netsOut}*
+𖤣 _OS_ : ${OS}
+𖤣 _CPU Model_ : ${cpuModel}
+𖤣 _CPU Core_ : ${cpuCore} Core
+𖤣 _CPU_ : ${cpuPer? `${cpuPer}%`:"Not Found"}
+𖤣 _Ram_ : ${ramUsed} / ${_ramTotal}(${/[0-9.+/]/g.test(ramUsed) &&  /[0-9.+/]/g.test(ramTotal) ? Math.round(100 * (ramUsed / ramTotal)) + '%' : NotDetect})
+𖤣 _Drive_ : ${driveUsed} / ${driveTotal} (${drivePer})
+𖤣 _Ping_ : ${Math.round(neww - old)} ms
+𖤣 _Internet IN_ : ${netsIn}
+𖤣 _Internet OUT_ : ${netsOut}
 `
 let button = [{"buttonId": `${handlers}infobot`,"buttonText": {"displayText": `Info bot`},"type": "RESPONSE"},
                     {"buttonId": `${handlers}menu`,"buttonText": {"displayText": `Menu`},"type": "RESPONSE"}]
