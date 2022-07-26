@@ -2,9 +2,9 @@ const { performance } = require('perf_hooks')
 let osu = require('node-os-utils')
 async function execute(bosco, msg, match) {
     try {
-        //let NotDetect = 'Not Detect'
+        let NotDetect = 'Not Detect'
         let old = performance.now()
-        /*let cpu = osu.cpu
+        let cpu = osu.cpu
         let cpuCore = cpu.count()
         let drive = osu.drive
         let mem = osu.mem
@@ -47,8 +47,7 @@ async function execute(bosco, msg, match) {
         
         let _ramTotal = (ramTotal + ' MB')*/
         let neww = performance.now()
-        let status =`_Ping_ : ${Math.round(neww - old)} ms
-`
+        let status =`_Ping_ : ${Math.round(neww - old)} ms`
 
 bosco.sendMessage(msg.key.remoteJid, {text :status},{quoted : msg})
 } catch (err) {
