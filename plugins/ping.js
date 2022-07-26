@@ -44,12 +44,10 @@ async function execute(bosco, msg, match) {
                 netsOut = NotDetect
         })
         await Promise.all([p1, p2, p3, p4])
-        
         let _ramTotal = (ramTotal + ' MB')
         let neww = performance.now()
-        let status =`_Ping_ : ${Math.round(neww - old)} ms`
-
-bosco.sendMessage(msg.key.remoteJid, {text :status},{quoted : msg})
+        let status =` _Ping_ : ${Math.round(neww - old)} ms`
+reply(status)
 } catch (err) {
 reply(err)
 }
