@@ -49,6 +49,11 @@
         "required": false,
         "value": "."
       },
+      "MODE": {
+        "description": "Private or public",
+        "required": true,
+        "value":"public"
+      },
       "SESSION_ID": {
         "description": "session id",
         "required": true
