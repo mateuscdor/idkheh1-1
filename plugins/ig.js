@@ -1,11 +1,13 @@
 const hx = require('hxz-api');
+const { instagramdl, instagramdlv2, instagramdlv3 } = require('@bochilteam/scraper');
 const {isUrl, getBuffer} = require("../lib/myfunc");
 const igRegex = / (https?:\/\/(?:www\.)?instagram\.com\/p\/([^/?#&]+)).*/
 const execute = async (pepe, msg, match) => {
   if (!match)
             return await reply(`_Example : ${handlers}ig link_`);
-if (!igRegex.test(match))
-        return reply('_link is not valid!_');
+if (!igRegex.test(match)) {
+   reply('_link is not valid!_');
+} else {
 let [ insta ] = match.match(igRegex) || [];
                 let url = insta
 	            hx.igdl(url)
@@ -32,7 +34,16 @@ let [ insta ] = match.match(igRegex) || [];
                 pepe.sendMessage(msg.key.remoteJid, { image: link, jpegThumbnail: await getBuffer(i.preview), caption: `_Instagram ${i.type}_` }, { quoted: msg })                      
                }
               }
-            }).catch((err) => reply('_Error !_'))                
+            }).catch((err) => {
+instagramdlv3(`${url}`).then(async (data) => {            
+var buf = await getBuffer(data[0].thumbnail)        
+pepe.sendMessage(msg.key.remoteJid, { video: { url: data[0].url }, jpegThumbnail:buf, caption: bot_footer }, { quoted: msg })
+}).catch((err) => {
+reply(`*Failed to download media and send videos*`)
+})
+
+})     
+}           
 };
 
 module.exports = {
