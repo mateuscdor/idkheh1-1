@@ -1,6 +1,6 @@
 const { wallpaper } = require('../lib/scraper');
 async function execute(bosco, msg, match) {
-if (!match) return reply(`Example : ${handlers}wallpaper gojo`)
+if (!match) return bosco.reply(msg.key.remoteJid,`Example : ${handlers}wallpaper gojo`)
 anu = await wallpaper(match)
    result = anu[Math.floor(Math.random() * anu.length)]
 let buttons = [
