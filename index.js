@@ -326,7 +326,7 @@ await bosco.sendMessage(anu.id,{ text : gb.message.replace('&title', metadata.su
     })
 
     bosco.reply = (from, text) => {
-  bosco.sendMessage(from, {text: text, contextInfo: {"externalAdReply": {title: bot_footer,mediaType: 3, renderLargerThumbnail: false, showAdAttribution: true, detectLinks: true,body: "", thumbnail: bot_img ,sourceUrl: ("https://youtu.be/ZJQ50wYh7dc")}}})
+  bosco.sendMessage(from, {text: text, contextInfo: {"externalAdReply": {title: bot_footer,mediaType: 3, renderLargerThumbnail: false, showAdAttribution: true, detectLinks: true,body: "", thumbnail: bot_img ,sourceUrl: ("https://youtu.be/ZJQ50wYh7dc")}}},{quoted: msg})
 }  
 
     //Set status bio bot 
