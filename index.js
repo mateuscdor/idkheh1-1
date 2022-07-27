@@ -105,7 +105,7 @@ fs.readdirSync('./plugins/sql/').forEach(plugin => {
     //console.log(color(`using WA v${version.join('.')}, isLatest: ${isLatest}`))
     const bosco = makeWASocket({
         printQRInTerminal: true,
-        logger: logg({ level: 'debug' }),
+        logger: logg({ level: 'silent' }),
         auth: state,
         browser: ["pepesir", "Safari", "3.0"],
         version,
@@ -326,7 +326,7 @@ await bosco.sendMessage(anu.id,{ text : gb.message.replace('&title', metadata.su
     })
 
     bosco.reply = (from, text) => {
-  bosco.sendMessage(from, {text: text, contextInfo: {"externalAdReply": {title: bot_footer,mediaType: 3, renderLargerThumbnail: false, showAdAttribution: true, detectLinks: true,body: "", thumbnail: bot_img ,sourceUrl: ("https://youtu.be/ZJQ50wYh7dc")}}},{quoted: msg})
+  bosco.sendMessage(from, {text: text, contextInfo: {"externalAdReply": {title: bot_footer,mediaType: 3, renderLargerThumbnail: false, showAdAttribution: true,body: "", thumbnail: bot_img ,sourceUrl: ("https://youtu.be/ZJQ50wYh7dc")}}},{quoted: msg})
 }  
 
     //Set status bio bot 
