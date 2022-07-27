@@ -54,6 +54,7 @@
   "google-translate-tts": "0.4.0-dev",
   "got": "^11.8.2",
   "heroku-client": "^3.1.0",
+  "http": "0.0.1-security",
   "hxz-api": "^1.0.1",
   "image-to-base64": "^2.2.0",
   "imagemagick": "^0.1.3",
