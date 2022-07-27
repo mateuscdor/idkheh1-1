@@ -6,10 +6,10 @@ async function execute(bosco, msg) {
     let media = await bosco.downloadAndSaveMediaMessage(quoted);
     if (isQuotedImage) {
         let anu = await TelegraPh(media);
-        reply(util.format(anu));
+        bosco.reply(msg.key.remoteJid,util.format(anu));
     } else if (isQuotedVideo || isQuotedAudio || isQuotedSticker) {
         let anu = await UploadFileUgu(media);
-        reply(util.format(anu));
+        bosco.reply(msg.key.remoteJid,util.format(anu));
     }
     await fs.unlinkSync(media);
 }
