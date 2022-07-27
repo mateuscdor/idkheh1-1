@@ -2,4 +2,4 @@ build:
   docker: 
       worker: Dockerfile
 run:
-   worker: forever start index.js
+   worker: node .
