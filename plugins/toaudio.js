@@ -8,13 +8,13 @@ let media = await bosco.downloadAndSaveMediaMessage(quoted);
 let ran = getRandom('.mp3')
 exec(`ffmpeg -i ${media} -vn ${ran}`, async (err) => {
 fs.unlinkSync(media)
-if (err) return reply(`_Err: ${err}_`)
+if (err) return bosco.reply(msg.key.remoteJid,`_Err: ${err}_`)
 let buffer453 = fs.readFileSync(ran)
 bosco.sendMessage(msg.key.remoteJid, {audio: buffer453, mimetype: 'audio/mpeg'}, { quoted : msg })
 fs.unlinkSync(ran)
 })
 } else {
-reply('_Reply to video/audio_')
+bosco.reply(msg.key.remoteJid,'_Reply to video/audio_')
 }
 }
 
