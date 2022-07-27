@@ -1,7 +1,7 @@
 const translate = require('@vitalets/google-translate-api');
 async function execute(bosco, msg, match) {
     if (!match)
-        return reply(`_Example : ${handlers}trt {ml} text_`);
+        return bosco.reply(msg.key.remoteJid,`_Example : ${handlers}trt {ml} text_`);
     let
         LANG = 'en', trtMessage = match;
     if (langMatch = match.match("\\{([a-z]{2})\\}")) {
@@ -12,7 +12,7 @@ async function execute(bosco, msg, match) {
         to: LANG
     }).then(async (res) => {
         if ("text" in res) {
-            await reply(res.text);
+            await bosco.reply(msg.key.remoteJid,res.text);
         }
     });
 }
