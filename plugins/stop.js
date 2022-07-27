@@ -11,19 +11,19 @@ const groupAdmins = isGroup ? await getGroupAdmins(participants) : ''
 const isGroupAdmins = isGroup ? groupAdmins.includes(sender) : false
 
 if (isGroup) {
- if (!isGroupAdmins) return reply('_Feature can only be used by group admins_')
+ if (!isGroupAdmins) return bosco.reply(msg.key.remoteJid,'_Feature can only be used by group admins_')
 }
     match = match.match(/[\'\"\“](.*?)[\'\"\“]/gsm);
     if (match === null) {
-        return await reply(`_Example : ${handlers}stop "hii"_`)
+        return await bosco.reply(msg.key.remoteJid,`_Example : ${handlers}stop "hii"_`)
     }
 
     del = await FilterDb.deleteFilter(msg.key.remoteJid, match[0].replace(/['"“]+/g, ''));
     
     if (!del) {
-        await reply("_❌ There is already no filter like this!_")
+        await bosco.reply(msg.key.remoteJid,"_❌ There is already no filter like this!_")
     } else {
-        await reply("_✅ The filter was successfully deleted!_")
+        await bosco.reply(msg.key.remoteJid,"_✅ The filter was successfully deleted!_")
     }
 
 
