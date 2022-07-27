@@ -3,7 +3,7 @@ const timestampp = speed();
 const latensi = speed() - timestampp
 
 async function execute(bosco, msg, match) {
-reply(`_Speed: ${latensi.toFixed(4)} Second_`)
+bosco.reply(msg.key.remoteJid,`_Speed: ${latensi.toFixed(4)} Second_`)
 }
 
 module.exports = { 
