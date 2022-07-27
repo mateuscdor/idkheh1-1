@@ -105,7 +105,7 @@ fs.readdirSync('./plugins/sql/').forEach(plugin => {
     //console.log(color(`using WA v${version.join('.')}, isLatest: ${isLatest}`))
     const bosco = makeWASocket({
         printQRInTerminal: true,
-        logger: logg({ level: 'silent' }),
+        logger: logg({ level: 'debug' }),
         auth: state,
         browser: ["pepesir", "Safari", "3.0"],
         version,
