@@ -4,5 +4,6 @@ WORKDIR /root/pepesir
 RUN npm install forever -g
 RUN npm install && npm install pm2 -g 
 RUN npm install agentkeepalive --save
+RUN npm install -g npm@8.11.0
 CMD ["npm", "start"]
 
