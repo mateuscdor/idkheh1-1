@@ -2,22 +2,23 @@ const FilterDb = require('./sql/filters');
 const {getGroupAdmins} = require("../lib/myfunc");
 async function execute(bosco, msg, match) {
 
-const from = msg.key.remoteJid
-const isGroup = from.endsWith('@g.us')
-const groupMetadata = isGroup ? await bosco.groupMetadata(from) : ""
-const sender = isGroup ? (msg.key.participant ? msg.key.participant : msg.participant) : msg.key.remoteJid
-const participants = isGroup ? await groupMetadata.participants : ''
-const groupAdmins = isGroup ? await getGroupAdmins(participants) : ''
-const isGroupAdmins = isGroup ? groupAdmins.includes(sender) : false
+    const from = msg.key.remoteJid;
+    const isGroup = from.endsWith('@g.us');
+    const groupMetadata = isGroup ? await bosco.groupMetadata(from) : "";
+    const sender = isGroup ? (msg.key.participant ? msg.key.participant : msg.participant) : msg.key.remoteJid;
+    const participants = isGroup ? await groupMetadata.participants : '';
+    const groupAdmins = isGroup ? await getGroupAdmins(participants) : '';
+    const isGroupAdmins = isGroup ? groupAdmins.includes(sender) : false;
 
-if (isGroup) {
- if (!isGroupAdmins) return reply('_Feature can only be used by group admins_')
-}
-match = match.match(/[\'\"\“](.*?)[\'\"\“]/gsm);
+    if (isGroup) {
+        if (!isGroupAdmins)
+            return reply('_Feature can only be used by group admins_');
+    }
+    match = match.match(/[\'\"\“](.*?)[\'\"\“]/gsm);
     if (match === null) {
         filtreler = await FilterDb.getFilter(msg.key.remoteJid);
         if (filtreler === false) {
-            await reply('_❌ There are no filters in this chat!_')
+            await reply('_❌ There are no filters in this chat!_');
         } else {
             var mesaj = "*🔎 Filters in this chat:*" + '\n';
             filtreler.map((filter) => mesaj += '_' + filter.dataValues.pattern + '_\n');
