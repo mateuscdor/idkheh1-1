@@ -12,7 +12,7 @@ return dDisplay + hDisplay + mDisplay + sDisplay;
 }
 
 async function execute(bosco, msg, match) {
-await bosco.reply(msg.key.remoteJid,`_Runtime : ${runtime(process.uptime())}_`)
+await reply(`_Runtime : ${runtime(process.uptime())}_`)
 }
 
 module.exports = { 
