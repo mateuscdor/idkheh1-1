@@ -26,8 +26,8 @@ const list = {title: number++,
 }, 
 ]
 }
-}
-sections.push(list)   
+sections.push(list)  
+} 
   await bosco.sendMessage(
 msg.key.remoteJid, 
 {
