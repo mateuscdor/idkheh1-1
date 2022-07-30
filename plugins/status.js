@@ -11,7 +11,7 @@ if (isUrl(match)) {
                 bosco.sendMessage(msg.key.remoteJid, { image: link }, { jpegThumbnail: bot_img ,contextInfo: { forwardingScore: 9999, externalAdReply: { title: bot_footer, body: '', previewType: "PHOTO", thumbnail: bot_img, sourceUrl: match } }, quoted: msg })                      
                }             
 } else {
-let efxv = await fetchJson('https://api.pepesir.repl.co/efxvid.json')
+let efxv = await fetchJson('https://pepesir.vercel.app/statusv.json')
 let number = 1
 let sections = []  
 for (let hi of efxv.result) {
