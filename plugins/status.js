@@ -70,7 +70,7 @@ reply(err)
 }
 
 module.exports = { 
-    command: "status", 
+    command: "botstatus", 
     Type: "misc", 
     isDependent: false, 
     desc: "used to get status of bot", 
