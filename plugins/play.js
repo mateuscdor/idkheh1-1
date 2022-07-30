@@ -33,25 +33,27 @@ let info = await ytdl.getInfo(link);
 let format = ytdl.filterFormats(info.formats, 'audioonly');
 if(Number(format.contentLength) > 20000000 ) return reply(`_File size is ${FileSize(format.contentLength)}\nI cant download 😤_`)
 
-let teks =`*𝚈𝙾𝚄𝚃𝚄𝙱𝙴 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝚁*
+let text = '';            
+text += ' *𝚈𝙾𝚄𝚃𝚄𝙱𝙴 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝚁*' + '\n\n';
+text += `
+📂 _Title_    : ${info.videoDetails.title}
+📄 _Size_     : ${FileSize(format[0].contentLength)}
+🆔 _Id_.      : ${videoId}
+⏲️ _Duration_ : ${anu.all[0].timestamp}
+📊 _Viewers_  : ${h2k(anu.all[0].views)}
+🌐 _Upload at_: ${anu.all[0].ago}
+🔖 _Author_   : ${anu.all[0].author.name}
+👤 _Channel_  : ${anu.all[0].author.url}
+🔗 _Url_      : ${anu.all[0].url}
+📝 _Discription_: ${anu.all[0].description}`
 
-📂 Tɪᴛʟᴇ : ${info.videoDetails.title}
-📄 Sɪᴢᴇ : ${FileSize(format[0].contentLength)}
-🆔 Iᴅ : ${videoId}
-⏲️ Dᴜʀᴀᴛɪᴏɴ : ${anu.all[0].timestamp}
-📊 Vɪᴇᴡᴇʀꜱ : ${h2k(anu.all[0].views)}
-🌐 Uᴘʟᴏᴀᴅ ᴀᴛ : ${anu.all[0].ago}
-🔖 Aᴜᴛʜᴏʀ : ${anu.all[0].author.name}
-👤 Cʜᴀɴɴᴇʟ : ${anu.all[0].author.url}
-🔗 Uʀʟ : ${anu.all[0].url}
-📝 Dɪꜱᴄʀɪᴩᴛɪᴏɴ : ${anu.all[0].description}`
 let buttons = [
   {buttonId: `${handlers}song ${dlink}`, buttonText: {displayText: 'Song'}, type: 1},
   {buttonId: `${handlers}video ${dlink}`, buttonText: {displayText: 'Video'}, type: 1}
    ]
   let buttonMessage = {
   image: { url: foto },
-  caption: teks,
+  caption: text,
   footer: bot_footer,
   buttons: buttons,
   headerType: 4
