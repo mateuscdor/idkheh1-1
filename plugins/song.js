@@ -1,4 +1,4 @@
-st yts = require("yt-search");
+const yts = require("yt-search");
 const ytdl = require('ytdl-core');
 const { FileSize, h2k, getRandom } = require('../lib/functions');
 const ytIdRegex =
