@@ -72,7 +72,7 @@ let listmenu = [`song ${search.all[0].url}`,`song ${search.all[1].url}`,`song ${
       let startnum = 0
       let startnumm = 0
       for (let x of listmenu) {
-      const list = {title: 'RESULT NUMBER ' + nombor++,
+      const list = {title: nombor++,
       rows: [
          {
           title: `${listmenuu[startnum++]}`,
