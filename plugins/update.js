@@ -8,7 +8,7 @@ const { PassThrough } = require('stream');
 const heroku = new Heroku({ token: heroku_api_key })
 const {getBuffer} = require("../lib/myfunc");
 async function execute(bosco, msg, match) {
-if (!msg.key.fromMe) return bosco.reply(msg.key.remoteJid,'_only for owner_')
+if (!msg.key.fromMe) return reply('_only for owner_')
     if (!match) {
         await git.fetch();
         var commits = await git.log(['main' + '..origin/' + 'main']);
@@ -40,13 +40,13 @@ if (!msg.key.fromMe) return bosco.reply(msg.key.remoteJid,'_only for owner_')
             await git.fetch();
             var commits = await git.log(['main' + '..origin/' + 'main']);
             if (commits.total === 0) {
-                return await bosco.reply(msg.key.remoteJid,"_Bot is up to date_");
+                return await reply("_Bot is up to date_");
             } else {
-                await bosco.reply(msg.key.remoteJid,"_Build started ⚒⚙_");
+                await reply("_Build started ⚒⚙_");
                 try {
                     var app = await heroku.get('/apps/' + heroku_app_name);
                 } catch {
-                    await bosco.reply(msg.key.remoteJid,"_Heroku app name/api key is wrong ‼️_");
+                    await reply("_Heroku app name/api key is wrong ‼️_");
 
                     await new Promise(r => setTimeout(r, 1000));
                 }
@@ -62,9 +62,9 @@ if (!msg.key.fromMe) return bosco.reply(msg.key.remoteJid,'_only for owner_')
                 } catch { console.log('Deploy error catched. Retrying...'); }
                 try { await git.push('heroku', 'main'); } catch (e) {
                     if (e.message.includes("concurrent"))
-                        return await bosco.reply(msg.key.remoteJid,"_Your account has reached in-parallel build limit! Please wait for the other app to finish its deploy ‼️_");
+                        return await reply("_Your account has reached in-parallel build limit! Please wait for the other app to finish its deploy ‼️_");
                 }
-                await bosco.reply(msg.key.remoteJid,"_Build finished! Restarting..._");
+                await bosco.sendMessage(msg.key.remoteJid,{text :"_Build finished! Restarting..._"});
             }
         }
             break;
