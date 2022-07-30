@@ -81,8 +81,7 @@ let button = [
         { urlButton: { displayText: `Github`, url: 'https://github.com/pepesir' } },
         { urlButton: { displayText: `Instagram`, url: 'https://instagram.com/pepe.sir_?' } },
         { quickReplyButton: { displayText: `Help`, id: `${handlers}help` } },
-        { quickReplyButton: { displayText: `Speed`, id: `${handlers}speed` } },
-        { quickReplyButton: { displayText: `Owner`, id: `${handlers}owner` } }
+        { quickReplyButton: { displayText: `Speed`, id: `${handlers}speed` } }
             ];
 await bosco.send5ButImg(msg.key.remoteJid, menu, bot_footer, bot_img, button) 
 };
