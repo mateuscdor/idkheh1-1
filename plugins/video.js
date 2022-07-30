@@ -57,7 +57,7 @@ reply(`${err}`)
             text += '📹 _Channel_      : ' + anu.all[0].author.url + '\n\n';
             text += '🔗 _Url_          : ' + anu.all[0].url + '\n\n';
             text += '📝 _Discription_  : ' + anu.all[0].description + '';
-            await bosco.sendMessage(from, { image: { url: anu.all[0].image }, caption: text }, { quoted: msg });
+            await bosco.sendMessage(msg.key.remoteJid, { image: { url: anu.all[0].image }, caption: text }, { quoted: msg });
             downloadMp4(dlink);
         } else {
 let search = await yts(match)                   
