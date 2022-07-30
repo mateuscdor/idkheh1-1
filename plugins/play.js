@@ -91,7 +91,7 @@ sections
 } 
 }
 module.exports = {
-  command: ".play", //command with prefix. Ex command: '!test'
+  command: "play", //command with prefix. Ex command: '!test'
   Type: "download", //
   isDependent: false, //whether this command is related/dependent to some other command
   desc: "used to get the yt play list", // a string descring how to use this command Ex = help : 'To use this command type !test arguments'
