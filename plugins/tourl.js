@@ -6,11 +6,13 @@ async function execute(bosco, msg) {
     let media = await bosco.downloadAndSaveMediaMessage(quoted);
     if (isQuotedImage) {
         let anu = await TelegraPh(media);
-        bosco.reply(msg.key.remoteJid,util.format(anu));
+        reply(util.format(anu));
     } else if (isQuotedVideo || isQuotedAudio || isQuotedSticker) {
         let anu = await UploadFileUgu(media);
-        bosco.reply(msg.key.remoteJid,util.format(anu));
-    }
+        reply(util.format(anu));
+    } else {
+        reply('_Reply to a image/video/audio/sticker_')
+}
     await fs.unlinkSync(media);
 }
 module.exports = {
