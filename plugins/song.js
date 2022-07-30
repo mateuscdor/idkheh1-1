@@ -35,6 +35,7 @@ var videoId = ytteks.split('=')[1]
 var videoId = ytteks.replace('https://youtube.com/shorts/', '')
 }  
  let link =`https://youtube.com/watch?v=${videoId}` 
+ let dlink =`https://youtu.be/${videoId}`
  let anu = await yts(link)
  if(anu.all.length == "0") return reply("_No result found_")
  try{
@@ -60,13 +61,13 @@ let teks =`*𝚈𝙾𝚄𝚃𝚄𝙱𝙴 𝙰𝚄𝙳𝙸𝙾 𝙳𝙾𝚆𝙽�
 🔗 Uʀʟ : ${anu.all[0].url}
 📝 Dɪꜱᴄʀɪᴩᴛɪᴏɴ : ${anu.all[0].description}`
 await bosco.sendMessage(msg.key.remoteJid, {image: {url: foto}, caption: teks},{quoted: msg})
-downloadMp3(match) 
+downloadMp3(dlink) 
     } else {
  let search = await yts(match)                   
 let sections = []   
 let listmenu = [`video ${search.all[0].url}`,`song ${search.all[1].url}`,`video ${search.all[2].url}`,`song ${search.all[3].url}`,`video ${search.all[4].url}`,`song ${search.all[5].url}`,`video ${search.all[6].url}`,`song ${search.all[7].url}`,`video ${search.all[8].url}`,`song ${search.all[9].url}`,`video ${search.all[10].url}`,`song ${search.all[11].url}`,`video ${search.all[12].url}`,`song ${search.all[13].url}`,`video ${search.all[14].url}`,`song ${search.all[15].url}`,`video ${search.all[16].url}`,`song ${search.all[17].url}`,`video ${search.all[18].url}`,`song ${search.all[19].url}`]
-      let listmenuu = [`VIDEO MP4⬤: ${search.all[0].title}`,`SONG MP3⬤: ${search.all[1].title}`,`VIDEO MP4⬤: ${search.all[2].title}`,`SONG MP3⬤: ${search.all[3].title}`,`VIDEO MP4⬤: ${search.all[4].title}`,`SONG MP3⬤: ${search.all[5].title}`,`VIDEO MP4⬤: ${search.all[6].title}`,`SONG MP3⬤: ${search.all[7].title}`,`VIDEO MP4⬤: ${search.all[8].title}`,`SONG MP3⬤: ${search.all[9].title}`,`VIDEO MP4⬤: ${search.all[10].title}`,`SONG MP3⬤: ${search.all[11].title}`,`VIDEO MP4⬤: ${search.all[12].title}`,`SONG MP3⬤: ${search.all[13].title}`,`VIDEO MP4⬤: ${search.all[14].title}`,`SONG MP3⬤: ${search.all[15].title}`,`VIDEO MP4⬤: ${search.all[16].title}`,`SONG MP3⬤: ${search.all[17].title}`,`VIDEO MP4⬤: ${search.all[18].title}`,`SONG MP3⬤: ${search.all[19].title}`]
-      let listmenuuu = [`\n${search.all[0].description}`,`\n${search.all[1].description}`,`\n${search.all[2].description}`,`\n${search.all[3].description}`,`\n${search.all[4].description}`,`\n${search.all[5].description}`,`\n${search.all[6].description}`,`\n${search.all[7].description}`,`\n${search.all[8].description}`,`\n${search.all[9].description}`,`\n${search.all[10].description}`,`\n${search.all[11].description}`,`\n${search.all[12].description}`,`\n${search.all[13].description}`,`\n${search.all[14].description}`,`\n${search.all[15].description}`,`\n${search.all[16].description}`,`\n${search.all[17].description}`,`\n${search.all[18].description}`,`\n${search.all[19].description}`]
+      let listm = [`VIDEO MP4⬤: ${search.all[0].title}`,`SONG MP3⬤: ${search.all[1].title}`,`VIDEO MP4⬤: ${search.all[2].title}`,`SONG MP3⬤: ${search.all[3].title}`,`VIDEO MP4⬤: ${search.all[4].title}`,`SONG MP3⬤: ${search.all[5].title}`,`VIDEO MP4⬤: ${search.all[6].title}`,`SONG MP3⬤: ${search.all[7].title}`,`VIDEO MP4⬤: ${search.all[8].title}`,`SONG MP3⬤: ${search.all[9].title}`,`VIDEO MP4⬤: ${search.all[10].title}`,`SONG MP3⬤: ${search.all[11].title}`,`VIDEO MP4⬤: ${search.all[12].title}`,`SONG MP3⬤: ${search.all[13].title}`,`VIDEO MP4⬤: ${search.all[14].title}`,`SONG MP3⬤: ${search.all[15].title}`,`VIDEO MP4⬤: ${search.all[16].title}`,`SONG MP3⬤: ${search.all[17].title}`,`VIDEO MP4⬤: ${search.all[18].title}`,`SONG MP3⬤: ${search.all[19].title}`]
+      let listme = [`\n${search.all[0].description}`,`\n${search.all[1].description}`,`\n${search.all[2].description}`,`\n${search.all[3].description}`,`\n${search.all[4].description}`,`\n${search.all[5].description}`,`\n${search.all[6].description}`,`\n${search.all[7].description}`,`\n${search.all[8].description}`,`\n${search.all[9].description}`,`\n${search.all[10].description}`,`\n${search.all[11].description}`,`\n${search.all[12].description}`,`\n${search.all[13].description}`,`\n${search.all[14].description}`,`\n${search.all[15].description}`,`\n${search.all[16].description}`,`\n${search.all[17].description}`,`\n${search.all[18].description}`,`\n${search.all[19].description}`]
       let nombor = 1
       let startnum = 0
       let startnumm = 0
@@ -74,8 +75,8 @@ let listmenu = [`video ${search.all[0].url}`,`song ${search.all[1].url}`,`video 
       const list = {title: 'RESULT NUMBER ' + nombor++,
       rows: [
          {
-          title: `${listmenuu[startnum++]}`,
-          description: `${listmenuuu[startnumm++]}`,
+          title: `${listm[startnum++]}`,
+          description: `${listme[startnumm++]}`,
           rowId: `${handlers}${x}`
 }, 
 ]
@@ -85,9 +86,9 @@ sections.push(list)
 await bosco.sendMessage(
 msg.key.remoteJid, 
 {
-text: "\n\n*_DONE SCRAPING DATA_*",
+text: "\n\n",
 footer: bot_footer,
-title: `HERE IS YOUR RESULTS HOMIE FROM *$(match}* _select song or video below_`,
+title: `${match}`,
 buttonText: "CLICK HERE",
 sections
 }, { quoted : msg }) 
