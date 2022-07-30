@@ -189,39 +189,6 @@ bosco.public = false
             global.reply = (teks) => {
                 bosco.sendMessage(from, { text: teks }, { quoted: msg })
             }
-            //Button document ✓
-            global.sentbutdocument = async(id, text1, desc1, gam1, but = [], options = {}) => {	
-                const buttonMessage = {
-                    contextInfo: options,
-                    document: fs.readFileSync('./media/file.docx'),
-                    mimetype: "application/vnd.openxmlformats-officedocument.wordprocessingml.document", 
-                    title : "Footer text", 
-                    fileLength : 999999999999, 
-                    pageCount: 100, 
-                    fileName : "Extream", 
-                    caption: text1,
-                    footer: desc1,
-                    buttons: but,
-                    headerType: "DOCUMENT"
-                }
-                await bosco.sendMessage(id, buttonMessage,options)
-            } 
-            //DOWNLOAD MP4
-            global.downloadMp4 = async (Link ) => {
-                try{
-                    await ytdl.getInfo(Link);
-                    let mp4File = getRandom('.mp4') 
-                    //console.log("Download video with ytdl-core")
-                    let nana = ytdl(Link)
-                    .pipe(fs.createWriteStream(mp4File))
-                    .on("finish", async () => {    
-                        await bosco.sendMessage(from, { video: fs.readFileSync(mp4File),gifPlayback: false},{quoted: msg})
-                        fs.unlinkSync(`./${mp4File}`)
-                        })     
-                        } catch(err) {
-                            reply(`${err}`)
-                            }
-                            }
             //Message types
             global.isImage = (type === 'imageMessage')
             global.isVideo = (type === 'videoMessage')
@@ -266,10 +233,10 @@ if (!msg.key.fromMe) return
                         console.log(error);
                     }
                 }
-            } else if (body.startsWith('https://youtu.be/')) { //auto download yt
+            } else if (body.startsWith('https://youtu')) { //auto download yt
                 let args = body.trim().split(' ')
                 let match = args[0]
-                bosco.plugins.get(`yt`).execute(bosco, msg, match);
+                bosco.plugins.get(`play`).execute(bosco, msg, match);
             } else if  (body.startsWith('https://www.instagram.com/')) { //auto download ig
                 let args = body.trim().split(' ')
                 let match = args[0]
