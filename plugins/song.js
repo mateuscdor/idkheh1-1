@@ -88,7 +88,7 @@ msg.key.remoteJid,
 {
 text: "\n\n",
 footer: bot_footer,
-title: `_$(match}_`,
+title: `_${match}_`,
 buttonText: "CLICK HERE",
 sections
 }, { quoted : msg }) 
