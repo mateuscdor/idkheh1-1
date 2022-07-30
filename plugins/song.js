@@ -15,7 +15,7 @@ let mp3File = getRandom('.mp3')
 ytdl(Link, {filter: 'audioonly'})
 .pipe(fs.createWriteStream(mp3File))
 .on("finish", async () => {  
-await bosco.sendMessage(msg.key.rwmoteJid, {audio:  fs.readFileSync(mp3File), mimetype: 'audio/mp4' },{ quoted: msg })
+await bosco.sendMessage(msg.key.remoteJid, {audio:  fs.readFileSync(mp3File), mimetype: 'audio/mp4' },{ quoted: msg })
 fs.unlinkSync(mp3File)
 })       
 } catch (err){
