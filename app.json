@@ -1,9 +1,9 @@
 {
-    "name": "Lisa-md",
+    "name": "Bosco",
     "description": "Whatsapp bot made by pepesir using baileys",
-    "repository": "https://github.com/pepesir/Lisa-md",
-    "logo": "https://telegra.ph/file/8fd47f9ccb7c39008b998.jpg",
-    "keywords": ["whatsbot", "whatsapp-bot", "whatsapp","bot","lisa","lisa-md","pepesir","md"],
+    "repository": "https://github.com/pepesir/Bosco",
+    "logo": "https://telegra.ph/file/d8a70dbcdfa75bafc6da0.jpg",
+    "keywords": ["whatsbot", "whatsapp-bot", "whatsapp","bot","bosco","bosco-md","pepesir","md"],
     "stack": "container",
     "env": {
       "BOT_NAME": {
