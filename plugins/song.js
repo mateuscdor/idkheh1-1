@@ -60,7 +60,7 @@ text += `📂 _Title_ : ${info.videoDetails.title}
 👤 _Channel_  : ${anu.all[0].author.url}
 🔗 _Url_      : ${anu.all[0].url}
 📝 _Discription_: ${anu.all[0].description}`
-await bosco.sendMessage(msg.key.remoteJid, {image: {url: foto}, caption: teks},{quoted: msg})
+await bosco.sendMessage(msg.key.remoteJid, {image: {url: foto}, caption: text},{quoted: msg})
 downloadMp3(dlink) 
     } else {
 let search = await yts(match)                   
