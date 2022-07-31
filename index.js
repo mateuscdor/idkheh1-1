@@ -272,14 +272,31 @@ var filtreler = await FilterDb.getFilter(msg.key.remoteJid);
                 if (anu.action == 'add') {
                   var we = await getMessage(anu.id,'welcome');
 if (we !== false) {
-               //     bosco.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `Welcome To ${metadata.subject} @${num.split("@")[0]}` })
-await bosco.sendMessage(anu.id,{ text : we.message.replace('&title', metadata.subject).replace('&desc', metadata.desc).replace('&mention','@' + num.split("@")[0]), mentions: [num]  })
+if (we.message.includes('&pp')) {
+try {
+                    ppuser = await bosco.profilePictureUrl(num, 'image')
+                } catch {
+                    ppuser  =  await bosco.profilePictureUrl(anu.id, 'image')
+                }
+await bosco.sendMessage(anu.id, { image: { url: ppuser }, caption : we.message.replace('&pp', '').replace('&count',metadata.participants.length).replace('&time',moment.tz('Asia/Kolkata').format('HH:mm:ss')).replace('&date',moment.tz('Asia/Kolkata').format('DD/MM/YYYY')).replace('&title', metadata.subject).replace('&desc', metadata.desc).replace('&mention','@' + num.split("@")[0]), mentions: [num]  })
+} else {
+await bosco.sendMessage(anu.id,{ text : we.message.replace('&count',metadata.participants.length).replace('&time',moment.tz('Asia/Kolkata').format('HH:mm:ss')).replace('&date',moment.tz('Asia/Kolkata').format('DD/MM/YYYY')).replace('&title', metadata.subject).replace('&desc', metadata.desc).replace('&mention','@' + num.split("@")[0]), mentions: [num]  })
+}
 }
                 } else if (anu.action == 'remove') {
-                 //   bosco.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `@${num.split("@")[0]} Leaving To ${metadata.subject}` })
+
 var gb = await getMessage(anu.id,'goodbye');
 if (gb !== false) {
-await bosco.sendMessage(anu.id,{ text : gb.message.replace('&title', metadata.subject).replace('&desc', metadata.desc).replace('&mention','@' + num.split("@")[0]), mentions: [num]  })
+if (gb.message.includes('&pp')) {
+try {
+                    ppuser = await bosco.profilePictureUrl(num, 'image')
+                } catch {
+                    ppuser  =  await bosco.profilePictureUrl(anu.id, 'image')
+                }
+await bosco.sendMessage(anu.id, { image: { url: ppuser }, caption : gb.message.replace('&pp', '').replace('&count',metadata.participants.length).replace('&time',moment.tz('Asia/Kolkata').format('HH:mm:ss')).replace('&date',moment.tz('Asia/Kolkata').format('DD/MM/YYYY')).replace('&title', metadata.subject).replace('&desc', metadata.desc).replace('&mention','@' + num.split("@")[0]), mentions: [num]  })
+} else {
+await bosco.sendMessage(anu.id,{ text : gb.message.replace('&count',metadata.participants.length).replace('&time',moment.tz('Asia/Kolkata').format('HH:mm:ss')).replace('&date',moment.tz('Asia/Kolkata').format('DD/MM/YYYY')).replace('&title', metadata.subject).replace('&desc', metadata.desc).replace('&mention','@' + num.split("@")[0]), mentions: [num]  })
+}
 }
                 } else if (anu.action == 'promote') {
                   //  bosco.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `@${num.split('@')[0]} Promote From ${metadata.subject}` })
