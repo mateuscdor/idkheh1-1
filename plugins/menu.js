@@ -1,3 +1,5 @@
+const {getBuffer} = require("../lib/myfunc");
+let vid = await getBuffer(bot_vid)
 const execute = async (bosco, msg) => {
 const pushname = msg.pushName || "No Name"
 let plugins = bosco.plugins;
@@ -83,7 +85,7 @@ let button = [
         { quickReplyButton: { displayText: `Help`, id: `${handlers}help` } },
         { quickReplyButton: { displayText: `Speed`, id: `${handlers}speed` } }
             ];
-await bosco.send5ButImg(msg.key.remoteJid, menu, bot_footer, bot_img, button) 
+await bosco.send5ButGif(msg.key.remoteJid, menu, bot_footer, vid, button) 
 };
 
 module.exports = { 
