@@ -21,8 +21,8 @@
         "required": false,
         "value": " 「 ʙᴏꜱᴄᴏ ʙᴏᴛ 」\nᴄʀᴇᴀᴛᴇᴅ ʙy ᎮᏋᎮᏋ Sɪʀ ×፝֟͜×"
       },
-      "ALIVE_VIDEO": {
-        "description": "Alive video link.",
+      "BOT_VIDEO": {
+        "description": "any video link.",
         "required": false,
         "value": "https://telegra.ph/file/a209db546105ed9447d2a.mp4"
       },
